@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mypod
+  labels:
+    app: myapp
+    env: devops
+spec:
+  containers:
+    name: nginx-cont
+    image: nginx
+    ports:
+    - name: nginx-cont
+      containerPort: 80
+...
+---
+#ClusterIP Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: ciservice
+  labels:
+    app: ciapp
+spec:
+  type: ClusterIP
+  selector:
+    app: myapp
+  ports:
+  - port: 80
+    targetPort: 80
+    
